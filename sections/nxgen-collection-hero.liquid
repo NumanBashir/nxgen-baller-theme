@@ -1,0 +1,75 @@
+{%- liquid
+  assign heading = section.settings.heading | default: collection.title
+  assign artwork = section.settings.artwork
+  if artwork == 'auto'
+    case collection.handle
+      when 'train-solo'
+        assign artwork = 'solo'
+      when 'matchday-essentials'
+        assign artwork = 'matchday'
+      when 'training-wear'
+        assign artwork = 'wear'
+    endcase
+  endif
+  assign hero_image = section.settings.image | default: collection.image
+  assign intro = section.settings.intro | default: collection.description
+  if intro == blank
+    case artwork
+      when 'solo'
+        assign intro = section.settings.solo_intro
+      when 'matchday'
+        assign intro = section.settings.matchday_intro
+      when 'wear'
+        assign intro = section.settings.wear_intro
+    endcase
+  endif
+-%}
+
+<section class="nx-collection-hero" aria-labelledby="NxCollection-{{ section.id }}">
+  <div class="nx-shell nx-collection-hero__inner">
+    <div class="nx-collection-hero__copy">
+      <h1 class="nx-display" id="NxCollection-{{ section.id }}">{{ heading | escape }}</h1>
+      {%- if intro != blank -%}
+        <div class="nx-collection-hero__intro rte">{{ intro }}</div>
+      {%- endif -%}
+      {%- if collection.all_products_count > 0 and section.settings.button_label != blank -%}
+        <a class="nx-button nx-button--light" href="#ProductGridContainer">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    <div class="nx-collection-hero__media nx-collection-hero__media--{{ artwork }}">
+      {%- if hero_image != blank -%}
+        {{
+          hero_image
+          | image_url: width: 1680
+          | image_tag: widths: '480, 720, 960, 1280, 1680', sizes: '(min-width: 750px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: ''
+        }}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NXGEN collection hero",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading override" },
+    { "type": "richtext", "id": "intro", "label": "Intro override" },
+    { "type": "image_picker", "id": "image", "label": "Image override" },
+    {
+      "type": "select", "id": "artwork", "label": "Campaign image fallback", "default": "auto",
+      "options": [
+        { "value": "auto", "label": "Match collection handle" },
+        { "value": "solo", "label": "Train Solo" },
+        { "value": "matchday", "label": "Matchday Essentials" },
+        { "value": "wear", "label": "Training Wear" }
+      ]
+    },
+    { "type": "text", "id": "solo_intro", "label": "Train Solo fallback intro", "default": "Footballs, markers and training tools for the work you put in on your own." },
+    { "type": "text", "id": "matchday_intro", "label": "Matchday fallback intro", "default": "Grip socks, shin pads and the essentials you pack before kick-off." },
+    { "type": "text", "id": "wear_intro", "label": "Training Wear fallback intro", "default": "Drill tops, shorts and layers for sessions in every season." },
+    { "type": "text", "id": "button_label", "label": "Product grid link", "default": "Browse products" }
+  ],
+  "presets": [{ "name": "NXGEN collection hero" }]
+}
+{% endschema %}

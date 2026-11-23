@@ -78,7 +78,8 @@
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
-      {%- if request.page_type == 'index' -%}
+      {%- assign nx_page_types = 'index,collection,product,cart' | split: ',' -%}
+      {%- if nx_page_types contains request.page_type -%}
         {%- assign nx_display_normal = settings.nx_display_font | font_modify: 'style', 'normal' | font_modify: 'weight', '700' -%}
         {%- assign nx_display_italic = settings.nx_display_font | font_modify: 'style', 'italic' | font_modify: 'weight', '800' -%}
         {%- assign nx_body_bold = settings.nx_body_font | font_modify: 'weight', '700' -%}
@@ -86,7 +87,7 @@
         {{ nx_display_italic | font_face: font_display: 'swap' }}
         {{ settings.nx_body_font | font_face: font_display: 'swap' }}
         {{ nx_body_bold | font_face: font_display: 'swap' }}
-        .nx-home {
+        .nx-storefront {
           --nx-display-family: {{ settings.nx_display_font.family }};
           --nx-body-family: {{ settings.nx_body_font.family }};
         }
@@ -293,6 +294,9 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'cart' -%}
+      {{ 'nxgen-cart.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -335,7 +339,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if request.page_type == 'index' %} nx-home{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if nx_page_types contains request.page_type %} nx-storefront nx-page-{{ request.page_type }}{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

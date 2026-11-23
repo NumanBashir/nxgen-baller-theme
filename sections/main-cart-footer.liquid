@@ -38,6 +38,9 @@
       {%- endif -%}
 
       <div class="cart__blocks">
+        {%- if section.settings.summary_heading != blank -%}
+          <h2 class="nx-cart-summary__heading">{{ section.settings.summary_heading | escape }}</h2>
+        {%- endif -%}
         {% for block in section.blocks %}
           {%- case block.type -%}
             {%- when '@app' -%}
@@ -59,7 +62,7 @@
                 </div>
 
                 <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                  <p class="totals__total">{{ 'sections.cart.estimated_total' | t }}</p>
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
                 </div>
 
@@ -138,6 +141,12 @@
   "name": "t:sections.main-cart-footer.name",
   "class": "cart__footer-wrapper",
   "settings": [
+    {
+      "type": "text",
+      "id": "summary_heading",
+      "label": "Summary heading",
+      "default": "Order summary"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
