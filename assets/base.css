@@ -3610,3 +3610,426 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* NXGEN-BALLER homepage */
+.nx-home {
+  --nx-ink: #0d1930;
+  --nx-blue: #173ec1;
+  --nx-paper: #fafaf7;
+  --nx-silver: #e9edf4;
+  --nx-line: #bfc9db;
+  --nx-display: var(--nx-display-family, "Barlow Condensed"), "Arial Narrow", "Helvetica Neue", sans-serif;
+  --nx-body: var(--nx-body-family, "Barlow"), "Helvetica Neue", Arial, sans-serif;
+  background: var(--nx-paper);
+  font-family: var(--nx-body);
+}
+
+.nx-home .header-wrapper,
+.nx-home .header-wrapper.gradient {
+  background: var(--nx-paper);
+}
+
+.nx-home .header,
+.nx-home .footer__content-top,
+.nx-home .footer__content-bottom-wrapper {
+  max-width: 156rem;
+  padding-inline: clamp(2rem, 5vw, 8rem);
+}
+
+.nx-home .header__heading-link .h2 {
+  color: var(--nx-ink);
+  font: italic 800 3.1rem/.95 var(--nx-display);
+  letter-spacing: -.035em;
+}
+
+.nx-home .header__menu-item {
+  color: var(--nx-ink);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nx-home .header__active-menu-item {
+  color: var(--nx-blue);
+  text-underline-offset: .5rem;
+}
+
+.nx-home .utility-bar,
+.nx-home .footer {
+  --color-background: 13, 25, 48;
+  --color-foreground: 250, 250, 247;
+  --color-link: 250, 250, 247;
+  --gradient-background: var(--nx-ink);
+  color: var(--nx-paper);
+  background: var(--nx-ink);
+}
+
+.nx-home .announcement-bar__message {
+  min-height: 3.6rem;
+  padding-block: .75rem;
+  font-size: 1.3rem;
+  letter-spacing: .035em;
+}
+
+.nx-home .footer-block__heading {
+  color: var(--nx-paper);
+  font: 700 3.3rem/1 var(--nx-display);
+}
+
+.nx-home .footer-block--newsletter,
+.nx-home .footer__content-bottom {
+  border-color: rgba(250, 250, 247, .25);
+}
+
+.nx-home .footer .scroll-trigger.animate--slide-in {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.nx-home .field__input {
+  background-color: rgb(var(--color-background));
+}
+
+.nx-shell {
+  width: min(100%, 156rem);
+  margin-inline: auto;
+  padding-inline: clamp(2rem, 5vw, 8rem);
+}
+
+.nx-display {
+  margin: 0;
+  color: inherit;
+  font-family: var(--nx-display);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -.025em;
+  line-height: .9;
+  overflow-wrap: anywhere;
+}
+
+.nx-button {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 5rem;
+  align-items: center;
+  justify-content: center;
+  padding: .9rem 2.4rem;
+  border: 1px solid transparent;
+  font: 700 1.6rem/1.25 var(--nx-body);
+  text-decoration: none;
+}
+
+.nx-button--light {
+  background: var(--nx-paper);
+  color: var(--nx-ink);
+}
+
+.nx-button--light:hover {
+  background: var(--nx-silver);
+}
+
+.nx-home :is(.nx-button, .nx-gear__link):focus-visible {
+  outline: .2rem solid currentColor;
+  outline-offset: .4rem;
+  box-shadow: none;
+}
+
+.nx-home .nx-button--light:focus-visible {
+  outline-color: var(--nx-paper);
+}
+
+.nx-hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(54rem, 50vw, 78rem);
+  align-items: center;
+  isolation: isolate;
+  background: var(--nx-ink) url("nxgen-hero.webp") center 55% / cover no-repeat;
+  color: var(--nx-paper);
+}
+
+.nx-hero::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 17, 36, .9), rgba(7, 17, 36, .42) 44%, transparent 71%);
+  content: "";
+}
+
+.nx-hero__image {
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+}
+
+.nx-hero__inner {
+  padding-block: 7rem;
+}
+
+.nx-hero__copy {
+  max-width: min(55%, 65rem);
+}
+
+.nx-hero h1 {
+  max-width: 14ch;
+  font-size: clamp(6.8rem, 8vw, 13.8rem);
+  text-transform: uppercase;
+}
+
+.nx-hero p,
+.nx-football p {
+  max-width: 34ch;
+  margin: 2.4rem 0;
+  font-size: clamp(1.7rem, 1.55vw, 2.2rem);
+  line-height: 1.45;
+}
+
+.nx-gear {
+  padding-block: clamp(5.2rem, 7vw, 10rem);
+  color: var(--nx-ink);
+  scroll-margin-top: 10rem;
+}
+
+.nx-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: clamp(2.4rem, 3vw, 4rem);
+}
+
+.nx-section-heading h2,
+.nx-session h2 {
+  font-size: clamp(4.8rem, 6vw, 9rem);
+  text-transform: uppercase;
+}
+
+.nx-section-heading p,
+.nx-session__intro p {
+  max-width: 27ch;
+  margin: 0;
+  font-size: clamp(1.6rem, 1.55vw, 2.15rem);
+  line-height: 1.4;
+}
+
+.nx-gear__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.2rem, 1.8vw, 2.8rem);
+  margin: 0;
+}
+
+.nx-gear__item {
+  position: relative;
+}
+
+.nx-gear__media {
+  overflow: hidden;
+  aspect-ratio: 4 / 4.4;
+  background-color: var(--nx-silver);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.nx-gear__media:empty,
+.nx-football__media:empty {
+  display: block;
+}
+
+.nx-gear__media--solo { background-image: url("nxgen-solo.webp"); background-position: center 59%; }
+.nx-gear__media--matchday { background-image: url("nxgen-matchday.webp"); background-position: center 62%; }
+.nx-gear__media--wear { background-image: url("nxgen-wear.webp"); background-position: center 36%; }
+
+.nx-gear__media img,
+.nx-football__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nx-gear__caption {
+  padding: 1.7rem 0 1.5rem;
+  border-bottom: 1px solid var(--nx-line);
+}
+
+.nx-gear__caption h3,
+.nx-session__steps h3 {
+  margin: 0;
+  color: var(--nx-ink);
+  font: 700 clamp(2.5rem, 2.45vw, 3.7rem)/1 var(--nx-display);
+}
+
+.nx-gear__caption p,
+.nx-session__steps p {
+  margin: .75rem 0 0;
+  color: #34445e;
+  font-size: 1.55rem;
+  line-height: 1.45;
+}
+
+.nx-gear__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nx-gear__link:hover {
+  color: var(--nx-blue);
+  text-decoration: underline;
+}
+
+.nx-gear__link span {
+  font: 600 2rem/1 var(--nx-body);
+}
+
+.nx-gear__link::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.nx-football {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
+  background: var(--nx-blue);
+  color: var(--nx-paper);
+}
+
+.nx-football__media {
+  min-height: 48rem;
+  background: var(--nx-ink) url("nxgen-football.webp") center / cover no-repeat;
+}
+
+.nx-football__content {
+  align-self: center;
+  padding: clamp(4rem, 6.8vw, 10rem);
+}
+
+.nx-football h2 {
+  max-width: 10ch;
+  font-size: clamp(5.2rem, 7.2vw, 11rem);
+  text-transform: uppercase;
+}
+
+.nx-session {
+  background: var(--nx-silver);
+  color: var(--nx-ink);
+  scroll-margin-top: 10rem;
+}
+
+.nx-session__layout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(3rem, 8vw, 13rem);
+  padding-block: clamp(5.5rem, 8vw, 11rem);
+}
+
+.nx-session__intro p {
+  margin-top: 2rem;
+}
+
+.nx-session__steps {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: nx-drill;
+}
+
+.nx-session__steps li {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+  padding-block: 1.8rem;
+  border-top: 1px solid var(--nx-line);
+  counter-increment: nx-drill;
+}
+
+.nx-session__steps li:last-child {
+  border-bottom: 1px solid var(--nx-line);
+}
+
+.nx-session__steps li::before {
+  color: var(--nx-blue);
+  font: italic 700 2.8rem/1 var(--nx-display);
+  content: counter(nx-drill, decimal-leading-zero);
+}
+
+@media screen and (min-width: 990px) {
+  .nx-home .header--middle-left {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .nx-home .header__inline-menu {
+    justify-self: center;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .nx-home .header {
+    padding-inline: 1.2rem;
+  }
+
+  .nx-home .header__heading-link .h2 {
+    font-size: 2.6rem;
+  }
+
+  .nx-hero {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--nx-ink);
+  }
+
+  .nx-hero::after { display: none; }
+
+  .nx-hero::before {
+    order: 1;
+    min-height: 27rem;
+    aspect-ratio: 1.2;
+    background: url("nxgen-hero-mobile.webp") center 30% / cover no-repeat;
+    content: "";
+  }
+
+  .nx-hero:has(.nx-hero__image)::before { display: none; }
+
+  .nx-hero__image {
+    position: static;
+    order: 1;
+    height: auto;
+    aspect-ratio: 1.2;
+  }
+
+  .nx-hero__inner { padding-block: 4.2rem 3.2rem; }
+  .nx-hero__copy { max-width: 100%; }
+  .nx-hero h1 { max-width: 12ch; font-size: clamp(5.4rem, 13vw, 8.8rem); }
+  .nx-hero p, .nx-football p { margin-block: 1.6rem 2rem; }
+
+  .nx-section-heading {
+    display: block;
+  }
+
+  .nx-section-heading p { margin-top: 1rem; }
+
+  .nx-gear__grid,
+  .nx-football,
+  .nx-session__layout { grid-template-columns: minmax(0, 1fr); }
+
+  .nx-gear__grid { gap: 2.3rem; }
+  .nx-gear__media { aspect-ratio: 1.24; }
+  .nx-gear__media--wear { background-position: center 22%; }
+  .nx-gear__caption { padding-block: 1.2rem; }
+  .nx-football__media { min-height: 0; aspect-ratio: 1.25; }
+  .nx-football__content { padding: 4.4rem 2rem 5rem; }
+  .nx-session__steps li { grid-template-columns: 3.5rem minmax(0, 1fr); gap: .8rem; }
+}

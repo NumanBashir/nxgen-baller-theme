@@ -1,0 +1,74 @@
+<section id="training-gear" class="nx-shell nx-gear" aria-labelledby="NxGear-{{ section.id }}">
+  <div class="nx-section-heading">
+    <h2 id="NxGear-{{ section.id }}" class="nx-display">{{ section.settings.heading | escape }}</h2>
+    <p>{{ section.settings.description | escape }}</p>
+  </div>
+
+  <ul class="nx-gear__grid list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign collection = block.settings.collection
+        assign card_title = block.settings.title | default: collection.title
+        assign card_image = block.settings.image | default: collection.featured_image
+        assign card_link = block.settings.link | default: collection.url
+        if card_link == blank and block.settings.artwork == 'solo'
+          assign card_link = '#solo-session'
+        endif
+      -%}
+      <li class="nx-gear__item" {{ block.shopify_attributes }}>
+        <div class="nx-gear__media nx-gear__media--{{ block.settings.artwork }}">
+          {%- if card_image != blank -%}
+            {{ card_image | image_url: width: 1000 | image_tag: widths: '320, 480, 640, 800, 1000', sizes: '(min-width: 750px) 33vw, 100vw', loading: 'lazy', alt: '' }}
+          {%- endif -%}
+        </div>
+        <div class="nx-gear__caption">
+          <h3>
+            {%- if card_link != blank -%}
+              <a href="{{ card_link }}" class="nx-gear__link">{{ card_title | escape }} <span aria-hidden="true">↗</span></a>
+            {%- else -%}
+              {{- card_title | escape -}}
+            {%- endif -%}
+          </h3>
+          <p>{{ block.settings.description | escape }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "NXGEN gear categories",
+  "enabled_on": { "templates": ["index"] },
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gear for your game" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "From the first touch to the final whistle." }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Gear category",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "url", "id": "link", "label": "Custom link" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "select",
+          "id": "artwork",
+          "label": "Default campaign image",
+          "options": [
+            { "value": "solo", "label": "Solo training" },
+            { "value": "matchday", "label": "Matchday essentials" },
+            { "value": "wear", "label": "Training wear" }
+          ],
+          "default": "solo"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "NXGEN gear categories", "blocks": [{ "type": "category" }] }]
+}
+{% endschema %}

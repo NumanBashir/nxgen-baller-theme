@@ -78,6 +78,20 @@
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
+      {%- if request.page_type == 'index' -%}
+        {%- assign nx_display_normal = settings.nx_display_font | font_modify: 'style', 'normal' | font_modify: 'weight', '700' -%}
+        {%- assign nx_display_italic = settings.nx_display_font | font_modify: 'style', 'italic' | font_modify: 'weight', '800' -%}
+        {%- assign nx_body_bold = settings.nx_body_font | font_modify: 'weight', '700' -%}
+        {{ nx_display_normal | font_face: font_display: 'swap' }}
+        {{ nx_display_italic | font_face: font_display: 'swap' }}
+        {{ settings.nx_body_font | font_face: font_display: 'swap' }}
+        {{ nx_body_bold | font_face: font_display: 'swap' }}
+        .nx-home {
+          --nx-display-family: {{ settings.nx_display_font.family }};
+          --nx-body-family: {{ settings.nx_body_font.family }};
+        }
+      {%- endif -%}
+
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
         {% if forloop.index == 1 -%}
@@ -321,7 +335,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if request.page_type == 'index' %} nx-home{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

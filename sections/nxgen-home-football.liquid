@@ -1,0 +1,40 @@
+{%- liquid
+  assign featured_product = section.settings.product
+  assign feature_image = section.settings.image | default: featured_product.featured_image
+  assign feature_link = section.settings.button_link | default: featured_product.url | default: '#solo-session'
+  assign button_label = section.settings.session_button_label
+  if featured_product != blank
+    assign button_label = section.settings.product_button_label
+  endif
+-%}
+<section class="nx-football" aria-labelledby="NxFootball-{{ section.id }}">
+  <div class="nx-football__media">
+    {%- if feature_image != blank -%}
+      {{ feature_image | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 750px) 56vw, 100vw', loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+  <div class="nx-football__content">
+    <h2 id="NxFootball-{{ section.id }}" class="nx-display">{{ section.settings.heading | escape }}</h2>
+    <p>{{ section.settings.description | escape }}</p>
+    {%- if button_label != blank -%}
+      <a class="nx-button nx-button--light" href="{{ feature_link }}">{{ button_label | escape }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NXGEN football spotlight",
+  "enabled_on": { "templates": ["index"] },
+  "settings": [
+    { "type": "product", "id": "product", "label": "Featured football" },
+    { "type": "image_picker", "id": "image", "label": "Campaign image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "It starts with a ball." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "The football was the starting point for NXGEN-BALLER. It’s also all you need to get a few more touches in today." },
+    { "type": "text", "id": "product_button_label", "label": "Product button label", "default": "View football" },
+    { "type": "text", "id": "session_button_label", "label": "Training guide button label", "default": "Try the solo session" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "NXGEN football spotlight" }]
+}
+{% endschema %}

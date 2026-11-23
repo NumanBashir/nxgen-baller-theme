@@ -15,7 +15,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "Make every session count",
             "heading_size": "h0"
           }
         },
@@ -46,7 +46,8 @@
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
-      }
+      },
+      "disabled": true
     },
     "featured_collection": {
       "type": "featured-collection",
@@ -74,10 +75,92 @@
         "columns_mobile": "2",
         "padding_top": 44,
         "padding_bottom": 36
+      },
+      "disabled": true
+    },
+    "nxgen_hero": {
+      "type": "nxgen-home-hero",
+      "settings": {
+        "heading": "Make every session count"
       }
+    },
+    "nxgen_gear": {
+      "type": "nxgen-home-gear",
+      "blocks": {
+        "train_solo": {
+          "type": "category",
+          "settings": {
+            "title": "Train Solo",
+            "description": "Footballs, markers and tools for your own sessions.",
+            "artwork": "solo",
+            "collection": "train-solo"
+          }
+        },
+        "matchday": {
+          "type": "category",
+          "settings": {
+            "title": "Matchday Essentials",
+            "description": "Grip socks, shin pads and the little things in your kit bag.",
+            "artwork": "matchday",
+            "collection": "matchday-essentials"
+          }
+        },
+        "training_wear": {
+          "type": "category",
+          "settings": {
+            "title": "Training Wear",
+            "description": "Drill tops, shorts and layers for time on the pitch.",
+            "artwork": "wear",
+            "collection": "training-wear"
+          }
+        }
+      },
+      "block_order": [
+        "train_solo",
+        "matchday",
+        "training_wear"
+      ]
+    },
+    "nxgen_football": {
+      "type": "nxgen-home-football"
+    },
+    "nxgen_session": {
+      "type": "nxgen-home-session",
+      "blocks": {
+        "first_touch": {
+          "type": "drill",
+          "settings": {
+            "heading": "First touch",
+            "description": "Pass against a wall and take your first touch to the side. Alternate feet with each return."
+          }
+        },
+        "ball_control": {
+          "type": "drill",
+          "settings": {
+            "heading": "Close control",
+            "description": "Place two markers a few steps apart. Dribble a figure eight, then reverse direction."
+          }
+        },
+        "weak_foot": {
+          "type": "drill",
+          "settings": {
+            "heading": "Weaker-foot passing",
+            "description": "Pick a spot on the wall. Pass to it with your weaker foot and reset after every touch."
+          }
+        }
+      },
+      "block_order": [
+        "first_touch",
+        "ball_control",
+        "weak_foot"
+      ]
     }
   },
   "order": [
+    "nxgen_hero",
+    "nxgen_gear",
+    "nxgen_football",
+    "nxgen_session",
     "image_banner",
     "featured_collection"
   ]

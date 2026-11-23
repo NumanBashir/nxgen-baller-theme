@@ -1,0 +1,42 @@
+<section id="solo-session" class="nx-session" aria-labelledby="NxSession-{{ section.id }}">
+  <div class="nx-shell nx-session__layout">
+    <div class="nx-session__intro">
+      <h2 id="NxSession-{{ section.id }}" class="nx-display">{{ section.settings.heading | escape }}</h2>
+      <p>{{ section.settings.description | escape }}</p>
+    </div>
+
+    <ol class="nx-session__steps">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          <div>
+            <h3>{{ block.settings.heading | escape }}</h3>
+            <p>{{ block.settings.description | escape }}</p>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NXGEN solo session",
+  "enabled_on": { "templates": ["index"] },
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The 15-minute solo session" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "A ball, a wall and two markers. Take five minutes on each drill." }
+  ],
+  "blocks": [
+    {
+      "type": "drill",
+      "name": "Drill",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "First touch" },
+        { "type": "textarea", "id": "description", "label": "Instructions" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "NXGEN solo session", "blocks": [{ "type": "drill" }] }]
+}
+{% endschema %}
